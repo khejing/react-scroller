@@ -51,7 +51,7 @@ const Scroller = React.createClass({
             marginBottom = this.props.screenAttributes.type === 'lg' ? 0 : 49;
         }
 
-        // 为聊天记录页面做特殊处理
+        // 涓鸿亰澶╄褰曢〉闈㈠仛鐗规畩澶勭悊
         // TODO: replace role prop with redux-router
         if (this.props.role === 'chatRecords') {
             marginTop = 49;

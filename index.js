@@ -1,7 +1,20 @@
 import React from 'react';
 
 const Scroller = React.createClass({
+    getInitialState(){
+        return {
+            hasMore: false,
+            hasNoMore: false
+        };
+    },
+    componentDidMount() {
+        if (this.props.scrollToBottom) {
+            this.scrollBottom();
+        }
+    },
+
     preventOnScrollEvent: false,
+
     onScroll(e) {
         if(this.preventOnScrollEvent){
             this.preventOnScrollEvent = false;
@@ -13,7 +26,13 @@ const Scroller = React.createClass({
             }
         } else if (e.target.scrollHeight > e.target.offsetHeight && e.target.scrollTop <= 0) {
             if (this.props.onScrollTop) {
+                if(!this.state.hasNoMore){
+                    this.setState({hasMore: true});
+                }
                 this.props.onScrollTop();
+                if(this.state.hasMore){
+                    this.setState({hasMore: false});
+                }
             }
         }
         if (this.props.onScroll) {
@@ -21,10 +40,8 @@ const Scroller = React.createClass({
         }
     },
 
-    componentDidMount() {
-        if (this.props.scrollToBottom) {
-            this.scrollBottom();
-        }
+    hasNoMore(){
+        this.setState({hasNoMore: true});
     },
 
     scrollBottom() {
@@ -75,7 +92,8 @@ const Scroller = React.createClass({
 
         return (
             <div ref="scroller" className={"comm-scroller " + (this.props.className || "")} onScroll={this.onScroll} style={style}>
-                <div>{this.props.children}</div>
+                {this.state.hasMore && <p className="gray-text">正在加载...</p>}
+                {React.cloneElement(this.props.children, {onNoMore: this.hasNoMore})}
             </div>
         );
     }

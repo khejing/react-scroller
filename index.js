@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import {getScreenAttributes, screenAttributes} from './screenAttributes.js';
+import ScreenAttributes, {getScreenAttributes} from 'screen-attributes-mixin';
 
 const Scroller = React.createClass({
-    mixins: [screenAttributes],
+    mixins: [ScreenAttributes],
     getInitialState(){
         let {screenWidth, screenHeight, screenType} = getScreenAttributes();
         return {

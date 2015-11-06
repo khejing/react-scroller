@@ -17,7 +17,7 @@ const Scroller = React.createClass({
     },
     componentDidUpdate(props, state){
         //TODO: add to see if it's not scroll bottom, or don't call scrollBottom()
-        if(props.marginBottom < this.props.marginBottom || state.screenHeight < this.state.screenHeight){
+        if(props.marginBottom < this.props.marginBottom || state.screenHeight > this.state.screenHeight){
             this.scrollBottom();
         }
     },

@@ -2,7 +2,7 @@ import React from 'react';
 import {getScreenAttributes, screenAttributes} from './screenAttributes.js';
 
 const Scroller = React.createClass({
-    mixins: [screenAttributes],
+//    mixins: [screenAttributes],
     getInitialState(){
         let {screenWidth, screenHeight, screenType} = getScreenAttributes();
         return {
@@ -63,7 +63,6 @@ const Scroller = React.createClass({
     },
 
     render() {
-        console.log("scroller children is ", this.props.children);
         let marginTop = this.props.marginTop;
         let marginBottom = this.props.marginBottom;
 

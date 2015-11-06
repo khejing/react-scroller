@@ -17,7 +17,6 @@ const Scroller = React.createClass({
     },
     componentWillUpdate(nextProps, nextState){
         let ctn = this.refs.scroller.getDOMNode();
-        console.log("scrolltop is "+ctn.scrollTop+", offsetHeight is "+ctn.offsetHeight+", scrollHeight is "+ctn.scrollHeight);
         if (ctn.scrollTop + ctn.offsetHeight >= ctn.scrollHeight) {
             if(this.props.marginBottom < nextProps.marginBottom || this.state.screenHeight !== nextState.screenHeight){
                 this.needScrollToBottom = true;

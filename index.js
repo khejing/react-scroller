@@ -1,10 +1,16 @@
 import React from 'react';
+import {getScreenAttributes, screenAttributes} from './screenAttributes.js';
 
 const Scroller = React.createClass({
+    mixins: [screenAttributes],
     getInitialState(){
+        let {screenWidth, screenHeight, screenType} = getScreenAttributes();
         return {
             hasMore: false,
             hasNoMore: false
+            screenWidth,
+            screenHeight,
+            screenType
         };
     },
     componentDidMount() {
@@ -61,34 +67,19 @@ const Scroller = React.createClass({
         let marginBottom = this.props.marginBottom;
 
         if (typeof marginTop !== 'number') {
-            marginTop = this.props.screenAttributes.type === 'lg' ? 0 : 49;
+            marginTop = this.state.screenType === 'lg' ? 0 : 49;
         }
 
         if (typeof marginBottom !== 'number') {
-            marginBottom = this.props.screenAttributes.type === 'lg' ? 0 : 49;
-        }
-
-        // 为聊天记录页面做特殊处理
-        // TODO: replace role prop with redux-router
-        if (this.props.role === 'chatRecords') {
-            marginTop = 49;
-            marginBottom = 49;
-            if (this.props.screenAttributes.type === 'lg') {
-                marginBottom = 136;
-            }
+            marginBottom = this.state.screenType === 'lg' ? 0 : 49;
         }
 
         let style = {
-            height: parseInt(this.props.screenAttributes.height - marginTop - marginBottom) + 'px',
-            marginTop: `${marginTop}px`
+            height: this.state.screenHeight - marginTop - marginBottom,
+            marginTop
         };
 
-        if (this.props.style) {
-            for (let key in this.props.style) {
-                style[key] = this.props.style[key];
-            }
-        }
-
+        Object.assign(style, this.props.style);
 
         return (
             <div ref="scroller" className={"comm-scroller " + (this.props.className || "")} onScroll={this.onScroll} style={style}>

@@ -2,7 +2,7 @@ import React from 'react';
 import {getScreenAttributes, screenAttributes} from './screenAttributes.js';
 
 const Scroller = React.createClass({
-//    mixins: [screenAttributes],
+    mixins: [screenAttributes],
     getInitialState(){
         let {screenWidth, screenHeight, screenType} = getScreenAttributes();
         return {
@@ -71,7 +71,7 @@ const Scroller = React.createClass({
 
         return (
             <div ref="scroller" className={"comm-scroller " + (this.props.className || "")} onScroll={this.onScroll} style={style}>
-                {React.cloneElement(this.props.children)}
+                {this.props.children}
             </div>
         );
     }

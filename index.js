@@ -67,7 +67,7 @@ const Scroller = React.createClass({
             marginTop
         };
 
-        Object.assign(style, this.props.style);
+        //Object.assign(style, this.props.style);
 
         return (
             <div ref="scroller" className={"comm-scroller " + (this.props.className || "")} onScroll={this.onScroll} style={style}>

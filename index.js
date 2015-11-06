@@ -63,6 +63,7 @@ const Scroller = React.createClass({
     },
 
     render() {
+        console.log("scroller children is ", this.props.children);
         let marginTop = this.props.marginTop;
         let marginBottom = this.props.marginBottom;
 

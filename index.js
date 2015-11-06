@@ -15,6 +15,11 @@ const Scroller = React.createClass({
     componentDidMount(){
         this.scrollBottom();
     },
+    componentDidUpdate(props){
+        if(props.marginBottom !== this.props.marginBottom){
+            this.scrollBottom();
+        }
+    },
     preventOnScrollEvent: false,
     onScroll(e) {
         if(this.preventOnScrollEvent){

@@ -25,7 +25,7 @@ const Scroller = React.createClass({
         }
     },
     componentDidUpdate(prevProps, prevState){
-        if(this.needScrollToBottom)
+        if(this.needScrollToBottom){
             this.needScrollToBottom = false;
             this.scrollBottom();
         }

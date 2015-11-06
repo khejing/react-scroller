@@ -7,7 +7,7 @@ const Scroller = React.createClass({
         let {screenWidth, screenHeight, screenType} = getScreenAttributes();
         return {
             hasMore: false,
-            hasNoMore: false
+            hasNoMore: false,
             screenWidth,
             screenHeight,
             screenType

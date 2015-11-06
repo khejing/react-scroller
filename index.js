@@ -12,6 +12,9 @@ const Scroller = React.createClass({
             screenType
         };
     },
+    componentDidMount(){
+        this.scrollBottom();
+    },
     preventOnScrollEvent: false,
     onScroll(e) {
         if(this.preventOnScrollEvent){

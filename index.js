@@ -16,7 +16,7 @@ const Scroller = React.createClass({
         this.scrollBottom();
     },
     componentDidUpdate(props){
-        if(props.marginBottom !== this.props.marginBottom){
+        if(props.marginBottom < this.props.marginBottom){
             this.scrollBottom();
         }
     },

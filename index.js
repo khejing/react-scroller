@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import {getScreenAttributes, screenAttributes} from './screenAttributes.js';
 
 const Scroller = React.createClass({
@@ -11,14 +12,7 @@ const Scroller = React.createClass({
             screenType
         };
     },
-    componentDidMount() {
-        if (this.props.scrollToBottom) {
-            this.scrollBottom();
-        }
-    },
-
     preventOnScrollEvent: false,
-
     onScroll(e) {
         if(this.preventOnScrollEvent){
             this.preventOnScrollEvent = false;
@@ -37,19 +31,16 @@ const Scroller = React.createClass({
             this.props.onScroll(e.target.scrollTop);
         }
     },
-
     scrollBottom() {
         this.preventOnScrollEvent = true;
         var ctn = this.refs.scroller.getDOMNode();
         ctn.scrollTop = ctn.scrollHeight - ctn.offsetHeight;
     },
-
     setScrollTop(scrollTop) {
         this.preventOnScrollEvent = true;
         var ctn = this.refs.scroller.getDOMNode();
         ctn.scrollTop = scrollTop;
     },
-
     render() {
         let marginTop = this.props.marginTop;
         let marginBottom = this.props.marginBottom;
@@ -70,7 +61,7 @@ const Scroller = React.createClass({
         Object.assign(style, this.props.style);
 
         return (
-            <div ref="scroller" className={"comm-scroller " + (this.props.className || "")} onScroll={this.onScroll} style={style}>
+            <div ref="scroller" className={classNames("comm-scroller", this.props.className)} onScroll={this.onScroll} style={style}>
                 {this.props.children}
             </div>
         );

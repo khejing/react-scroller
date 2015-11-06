@@ -6,8 +6,6 @@ const Scroller = React.createClass({
     getInitialState(){
         let {screenWidth, screenHeight, screenType} = getScreenAttributes();
         return {
-            hasMore: false,
-            hasNoMore: false,
             screenWidth,
             screenHeight,
             screenType
@@ -32,22 +30,12 @@ const Scroller = React.createClass({
             }
         } else if (e.target.scrollHeight > e.target.offsetHeight && e.target.scrollTop <= 0) {
             if (this.props.onScrollTop) {
-                if(!this.state.hasNoMore){
-                    this.setState({hasMore: true});
-                }
                 this.props.onScrollTop();
-                if(this.state.hasMore){
-                    this.setState({hasMore: false});
-                }
             }
         }
         if (this.props.onScroll) {
             this.props.onScroll(e.target.scrollTop);
         }
-    },
-
-    hasNoMore(){
-        this.setState({hasNoMore: true});
     },
 
     scrollBottom() {
@@ -83,8 +71,7 @@ const Scroller = React.createClass({
 
         return (
             <div ref="scroller" className={"comm-scroller " + (this.props.className || "")} onScroll={this.onScroll} style={style}>
-                {this.state.hasMore && <p className="gray-text">正在加载...</p>}
-                {React.cloneElement(this.props.children, {onNoMore: this.hasNoMore})}
+                {React.cloneElement(this.props.children)}
             </div>
         );
     }

@@ -29,7 +29,7 @@ const screenAttributes = {
         window.removeEventListener('resize', this.onScreenAttributesChange);
     },
     onScreenAttributesChange(){
-        this.setState(getScreenAttributes();
+        this.setState(getScreenAttributes());
     }
 };
 

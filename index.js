@@ -16,11 +16,11 @@ const Scroller = React.createClass({
         this.scrollBottom();
     },
     componentDidUpdate(props, state){
-        //TODO: add to see if it's not scroll bottom, or don't call scrollBottom()
-        if(props.marginBottom < this.props.marginBottom || state.screenHeight > this.state.screenHeight){
-            console.log("before marginbottom"+props.marginBottom+", after marginbottom"+this.props.marginBottom);
-            console.log("before screenHeight"+state.screenHeight+", after screenheight"+this.state.screenHeight);
-            this.scrollBottom();
+        let ctn = this.refs.scroller.getDOMNode();
+        if (ctn.scrollTop + ctn.offsetHeight >= ctn.scrollHeight) {
+            if(props.marginBottom < this.props.marginBottom || state.screenHeight !== this.state.screenHeight){
+                this.scrollBottom();
+            }
         }
     },
     preventOnScrollEvent: false,
@@ -44,13 +44,12 @@ const Scroller = React.createClass({
     },
     scrollBottom() {
         this.preventOnScrollEvent = true;
-        var ctn = this.refs.scroller.getDOMNode();
+        let ctn = this.refs.scroller.getDOMNode();
         ctn.scrollTop = ctn.scrollHeight - ctn.offsetHeight;
     },
     setScrollTop(scrollTop) {
         this.preventOnScrollEvent = true;
-        var ctn = this.refs.scroller.getDOMNode();
-        ctn.scrollTop = scrollTop;
+        this.refs.scroller.getDOMNode().scrollTop = scrollTop;
     },
     render() {
         let marginTop = this.props.marginTop;

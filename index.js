@@ -1,3 +1,4 @@
+require("./style.css");
 import React from 'react';
 import classNames from 'classnames';
 import ScreenAttributes, {getScreenAttributes} from 'screen-attributes-mixin';

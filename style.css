@@ -1,0 +1,10 @@
+/* ================
+ 滚动区
+================ */
+.comm-scroller {
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    padding: 0;
+    height: 100%;
+}

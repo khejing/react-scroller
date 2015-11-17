@@ -1,6 +1,7 @@
 require("./style.css");
 import React from 'react';
 import classNames from 'classnames';
+import throttle from 'lodash/function/throttle.js';
 import ScreenAttributes, {getScreenAttributes} from 'screen-attributes-mixin';
 
 const Scroller = React.createClass({
@@ -47,7 +48,7 @@ const Scroller = React.createClass({
             }
         }
         if (this.props.onScroll) {
-            this.props.onScroll(e.target.scrollTop);
+            throttle(this.props.onScroll, 1000)(e.target.scrollTop);
         }
     },
     scrollBottom() {

@@ -7,9 +7,8 @@ import ScreenAttributes, {getScreenAttributes} from 'screen-attributes-mixin';
 const Scroller = React.createClass({
     mixins: [ScreenAttributes],
     getInitialState(){
-        let {screenWidth, screenHeight, screenType} = getScreenAttributes();
+        let {screenHeight, screenType} = getScreenAttributes();
         return {
-            screenWidth,
             screenHeight,
             screenType
         };

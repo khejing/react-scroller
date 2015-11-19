@@ -15,6 +15,9 @@ const Scroller = React.createClass({
     },
     componentDidMount(){
         this.scrollBottom();
+        if(this.props.onScroll){
+            this.throttledOnScroll = throttle(this.props.onScroll, 500);
+        }
     },
     componentWillUpdate(nextProps, nextState){
         let ctn = this.refs.scroller.getDOMNode();
@@ -32,6 +35,7 @@ const Scroller = React.createClass({
     },
     needScrollToBottom: false,
     preventOnScrollEvent: false,
+    throttledOnScroll: null,
     onScroll(e) {
         if(this.preventOnScrollEvent){
             this.preventOnScrollEvent = false;
@@ -47,7 +51,7 @@ const Scroller = React.createClass({
             }
         }
         if (this.props.onScroll) {
-            throttle(this.props.onScroll, 1000)(e.target.scrollTop);
+            this.throttledOnScroll(e.target.scrollTop);
         }
     },
     scrollBottom() {

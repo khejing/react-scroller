@@ -7,10 +7,9 @@ import ScreenAttributes, {getScreenAttributes} from 'screen-attributes-mixin';
 const Scroller = React.createClass({
     mixins: [ScreenAttributes],
     getInitialState(){
-        let {screenHeight, screenType} = getScreenAttributes();
+        let {screenHeight} = getScreenAttributes();
         return {
-            screenHeight,
-            screenType
+            screenHeight
         };
     },
     componentDidMount(){
@@ -68,11 +67,11 @@ const Scroller = React.createClass({
         let marginBottom = this.props.marginBottom;
 
         if (typeof marginTop !== 'number') {
-            marginTop = this.state.screenType === 'lg' ? 0 : 49;
+            marginTop = DEVICE_TYPE === 'desktop' ? 0 : 49;
         }
 
         if (typeof marginBottom !== 'number') {
-            marginBottom = this.state.screenType === 'lg' ? 0 : 49;
+            marginBottom = DEVICE_TYPE === 'desktop' ? 0 : 49;
         }
 
         let style = {

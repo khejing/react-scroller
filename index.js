@@ -35,6 +35,9 @@ const Scroller = React.createClass({
     needScrollToBottom: false,
     preventOnScrollEvent: false,
     throttledOnScroll: null,
+    getScrollHeight(){
+        return this.refs.scroller.getDOMNode().scrollHeight;
+    },
     onScroll(e) {
         if(this.preventOnScrollEvent){
             this.preventOnScrollEvent = false;

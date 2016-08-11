@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import throttle from 'lodash/function/throttle.js';
 import ScreenAttributes, {getScreenAttributes} from 'screen-attributes-mixin';
-import {isDesktop, isWeChat} from 'ua.js';
+import {isDesktop} from 'ua.js';
 
 const Scroller = React.createClass({
     mixins: [ScreenAttributes],
@@ -67,12 +67,8 @@ const Scroller = React.createClass({
         this.refs.scroller.getDOMNode().scrollTop = scrollTop;
     },
     render() {
-        let marginTop = this.props.marginTop;
+        let marginTop = this.props.marginTop || 0;
         let marginBottom = this.props.marginBottom;
-
-        if (typeof marginTop !== 'number') {
-            marginTop = (isDesktop() || isWeChat()) ? 0 : 49;
-        }
 
         if (typeof marginBottom !== 'number') {
             marginBottom = isDesktop() ? 0 : 49;
